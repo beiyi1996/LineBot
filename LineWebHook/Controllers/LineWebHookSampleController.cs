@@ -22,18 +22,19 @@ namespace LineWebHook.Controllers
                 this.ChannelAccessToken = channelAccessToken;
                 //取得Line Event(範例，只取第一個)
                 var LineEvent = this.ReceivedMessage.events.FirstOrDefault();
-                //配合Line verify 
+                //配合Line verify 回傳一個訊息給後台表示webhook成功連接
                 if (LineEvent.replyToken == "00000000000000000000000000000000") return Ok();
                 //回覆訊息
+                //this.PushMessage(LineEvent.source.userId,"6666"); //如果想要私訊某個人(userid)的話
                 if (LineEvent.type == "message")
                 {
                     if (LineEvent.message.type == "text") //收到文字
-                        this.ReplyMessage(LineEvent.replyToken, "你說了:" + LineEvent.message.text);
+                        this.ReplyMessage(LineEvent.replyToken, "我可以回復任何問題"); //replyToken傳訊息給整個聊天室
                     if (LineEvent.message.type == "sticker") //收到貼圖
                         this.ReplyMessage(LineEvent.replyToken, 1, 2);
                 }
                 //response OK
-                return Ok();
+                return Ok(); //回傳給line server
             }
             catch (Exception ex)
             {
