@@ -53,7 +53,8 @@ namespace LineWebHook.Controllers
                 if(LineEvent.type == "postback")
                 {
                     var data = LineEvent.postback.data;
-                    this.ReplyMessage(LineEvent.replyToken, $"觸發了postback \n 資料為: {data}");
+                    var datetime = LineEvent.postback.Params.datetime;
+                    this.ReplyMessage(LineEvent.replyToken, $"觸發了postback \n 資料為: {data} \n 選擇結果: {datetime}");
                 }
                 //response OK
                 return Ok(); //回傳給line server
