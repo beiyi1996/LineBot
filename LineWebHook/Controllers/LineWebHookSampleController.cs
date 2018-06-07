@@ -28,10 +28,11 @@ namespace LineWebHook.Controllers
                 //this.PushMessage(LineEvent.source.userId,"6666"); //如果想要私訊某個人(userid)的話
                 if (LineEvent.type == "message")
                 {
-                    if (LineEvent.message.type == "text") //收到文字
-                        this.ReplyMessage(LineEvent.replyToken, "我可以回復任何問題"); //replyToken傳訊息給整個聊天室
-                    if (LineEvent.message.type == "sticker") //收到貼圖
-                        this.ReplyMessage(LineEvent.replyToken, 1, 2);
+                    //if (LineEvent.message.type == "text") //收到文字
+                    //    this.ReplyMessage(LineEvent.replyToken, "我可以回覆任何問題"); //replyToken傳訊息給整個聊天室
+                    //if (LineEvent.message.type == "sticker") //收到貼圖
+                    //    this.ReplyMessage(LineEvent.replyToken, 1, 2);
+                    this.ReplyMessage(LineEvent.replyToken, "你的UserId是:" + LineEvent.source.userId);
                 }
                 //response OK
                 return Ok(); //回傳給line server
