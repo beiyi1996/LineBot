@@ -22,17 +22,38 @@ namespace LineWebHook.Controllers
                 this.ChannelAccessToken = channelAccessToken;
                 //取得Line Event(範例，只取第一個)
                 var LineEvent = this.ReceivedMessage.events.FirstOrDefault();
+                isRock.LineBot.Bot bot = new isRock.LineBot.Bot(ChannelAccessToken);
+                string Lineid = ReceivedMessage.events.FirstOrDefault().source.userId;
+                var Userinfo = bot.GetUserInfo(Lineid);
                 //配合Line verify 回傳一個訊息給後台表示webhook成功連接
                 if (LineEvent.replyToken == "00000000000000000000000000000000") return Ok();
                 //回覆訊息
                 //this.PushMessage(LineEvent.source.userId,"6666"); //如果想要私訊某個人(userid)的話
                 if (LineEvent.type == "message")
                 {
-                    //if (LineEvent.message.type == "text") //收到文字
-                    //    this.ReplyMessage(LineEvent.replyToken, "我可以回覆任何問題"); //replyToken傳訊息給整個聊天室
-                    //if (LineEvent.message.type == "sticker") //收到貼圖
-                    //    this.ReplyMessage(LineEvent.replyToken, 1, 2);
-                    this.ReplyMessage(LineEvent.replyToken, "你的UserId是:" + LineEvent.source.userId);
+                    if (LineEvent.message.type == "text") //收到文字
+                        this.ReplyMessage(LineEvent.replyToken, Userinfo.displayName + "你好，我可以回覆任何問題"); //replyToken傳訊息給整個聊天室
+                    if (LineEvent.message.type == "sticker") //收到貼圖
+                        this.ReplyMessage(LineEvent.replyToken, 1, 2);
+                    if (LineEvent.message.type == "location") //GPS定位
+                        this.ReplyMessage(LineEvent.replyToken, $"你的位置在 \n {LineEvent.message.latitude},{LineEvent.message.longitude}");
+                    if(LineEvent.message.type == "image") //收到圖片
+                    {
+                        var bytes = this.GetUserUploadedContent(LineEvent.message.id);
+                        var guid = Guid.NewGuid().ToString();
+                        var filename = $"{guid}.png";
+                        var path = System.Web.Hosting.HostingEnvironment.MapPath("~/temp/");
+                        System.IO.File.WriteAllBytes(path + filename, bytes);
+                        var baseUrl = Request.RequestUri.GetLeftPart(UriPartial.Authority);
+                        var url = $"{baseUrl}/temp/{filename}";
+                        this.ReplyMessage(LineEvent.replyToken, $"你的圖片位於 \n {url}");
+                    }
+                }
+
+                if(LineEvent.type == "postback")
+                {
+                    var data = LineEvent.postback.data;
+                    this.ReplyMessage(LineEvent.replyToken, $"觸發了postback \n 資料為: {data}");
                 }
                 //response OK
                 return Ok(); //回傳給line server

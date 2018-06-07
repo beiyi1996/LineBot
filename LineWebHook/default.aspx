@@ -21,6 +21,10 @@
             <asp:Button ID="Button3" runat="server" Height="23px" OnClick="Button3_Click" Text="Push Tempalte Message" Width="193px" />
         </p>
         <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Push Confirm Tempalte" Width="214px" />
+        <p>
+            <asp:Button ID="Button5" runat="server" OnClick="Button5_Click" Text="Push message to UserId" Width="200px" />
+        </p>
+        <asp:Button ID="Button6" runat="server" OnClick="Button6_Click" Text="Get Userinfo" Width="184px" />
     </form>
 </body>
 </html>

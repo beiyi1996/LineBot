@@ -64,5 +64,20 @@ namespace LineWebHook
             };
             bot.PushMessage(AdminUserId,ConfirmTemplateMsg);
         }
+
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            isRock.LineBot.Bot bot = new isRock.LineBot.Bot("9YwfPyWbdWkYqcs5aistrwDTZaPwLAivy+9vpvKS034TVyF9Cj7UhHcttzo4CJ1+zLH7YadJ7B5U9a9ho/4Kg6mU+Z5u0bHvo8zo7y3+8BwccBpL+4QDGrknX16T3roNmLnxVaOhmwkyXXQ/G2INFwdB04t89/1O/w1cDnyilFU=");
+            bot.PushMessage("U275c68b802e11bb599413ef87dcea051", "hihihihihihi~");
+            var Userinfo = bot.GetUserInfo("U275c68b802e11bb599413ef87dcea051");
+            Response.Write(Userinfo.displayName + Userinfo.pictureUrl + "<br/>" + Userinfo.statusMessage);
+        }
+
+        protected void Button6_Click(object sender, EventArgs e)
+        {
+            isRock.LineBot.Bot bot = new isRock.LineBot.Bot("9YwfPyWbdWkYqcs5aistrwDTZaPwLAivy+9vpvKS034TVyF9Cj7UhHcttzo4CJ1+zLH7YadJ7B5U9a9ho/4Kg6mU+Z5u0bHvo8zo7y3+8BwccBpL+4QDGrknX16T3roNmLnxVaOhmwkyXXQ/G2INFwdB04t89/1O/w1cDnyilFU=");
+            var Userinfo = bot.GetUserInfo("U275c68b802e11bb599413ef87dcea051");
+            Response.Write(Userinfo.displayName + "<br/>" + Userinfo.pictureUrl + "<br/>" + Userinfo.statusMessage);
+        }
     }
 }
