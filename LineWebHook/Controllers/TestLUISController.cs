@@ -9,11 +9,11 @@ namespace LineWebHook.Controllers
 {
     public class TestLUISController : isRock.LineBot.LineWebHookControllerBase
     {
-        const string channelAccessToken = "~~~請改成自己的ChannelAccessToken~~~";
-        const string AdminUserId = "~~~改成你的AdminUserId~~~";
-        const string LuisAppId = "~~~改成你的LuisAppId~~~";
-        const string LuisAppKey = "~~~改成你的LuisAppKey~~~";
-        const string Luisdomain = "~~~改成你的Luisdomain~~~"; //ex.westus
+        const string channelAccessToken = "9YwfPyWbdWkYqcs5aistrwDTZaPwLAivy+9vpvKS034TVyF9Cj7UhHcttzo4CJ1+zLH7YadJ7B5U9a9ho/4Kg6mU+Z5u0bHvo8zo7y3+8BwccBpL+4QDGrknX16T3roNmLnxVaOhmwkyXXQ/G2INFwdB04t89/1O/w1cDnyilFU=";
+        const string AdminUserId = "U275c68b802e11bb599413ef87dcea051";
+        const string LuisAppId = "c2c2930c-4e92-494e-b569-0d5400cd4686";
+        const string LuisAppKey = "8c5db4d4a17b4d25a99ee6502ada350f";
+        const string Luisdomain = "westus"; //ex.westus
 
         [Route("api/TestLUIS")]
         [HttpPost]
