@@ -47,7 +47,11 @@ namespace LineWebHook.Controllers
                         {
                             repmsg = $"OK，你想 '{ret.TopScoringIntent.Name}'，";
                             if (ret.Entities.Count > 0)
-                                repmsg += $"想要的是 '{ ret.Entities.FirstOrDefault().Value.FirstOrDefault().Value}' ";
+                                foreach(var item in ret.Entities)
+                                {
+                                    
+                                }
+                            repmsg += $"想要的是 '{ ret.Entities.FirstOrDefault().Value.FirstOrDefault().Value}' ";
                         }
                         //回覆
                         this.ReplyMessage(LineEvent.replyToken, repmsg);
